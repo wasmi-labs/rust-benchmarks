@@ -40,28 +40,28 @@ jobs:
         name: Documentation
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
-            - uses: dtolnay/rust-toolchain@stable
-              with:
-                components: rust-docs, rust-src
-            - name: Set up Rust cache
-              uses: Swatinem/rust-cache@v2
-            - name: Check Docs
+          - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
+          - uses: dtolnay/rust-toolchain@stable
+            with:
+              components: rust-docs, rust-src
+          - name: Set up Rust cache
+            uses: Swatinem/rust-cache@v2
+          - name: Check Docs
             env:
-                RUSTDOCFLAGS: "-D warnings"
+              RUSTDOCFLAGS: "-D warnings"
             run: cargo doc --workspace --locked --all-features --no-deps --document-private-items
 
     clippy:
         name: Clippy
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
-            - uses: dtolnay/rust-toolchain@nightly
-              with:
-                components: clippy
-            - name: Set up Rust cache
-              uses: Swatinem/rust-cache@v2
-            - name: Checkout Submodules
-              run: git submodule update --init --recursive
-            - name: Clippy (default features)
-              run: cargo clippy --workspace --locked -- -D warnings
+          - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
+          - uses: dtolnay/rust-toolchain@nightly
+            with:
+              components: clippy
+          - name: Set up Rust cache
+            uses: Swatinem/rust-cache@v2
+          - name: Checkout Submodules
+            run: git submodule update --init --recursive
+          - name: Clippy (default features)
+            run: cargo clippy --workspace --locked -- -D warnings
