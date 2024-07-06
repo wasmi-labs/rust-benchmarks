@@ -25,3 +25,12 @@ optimizations and stores the results in their respective directories.
 
 Use this script whenever a benchmark has changed or when a new Rust, LLVM or `wasm-opt`
 version has been released.
+
+## License
+
+Licensed under either of
+
+  * Apache License, Version 2.0, ([LICENSE-APACHE](LICENSE-APACHE) or <http://www.apache.org/licenses/LICENSE-2.0>)
+  * MIT license ([LICENSE-MIT](LICENSE-MIT) or <http://opensource.org/licenses/MIT>)
+
+at your option.
