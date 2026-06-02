@@ -9,7 +9,7 @@ edition.workspace = true
 
 [workspace]
 members = [
-    "cases/hashmap",
+    "cases/argon2",
     "cases/nbody",
     "cases/matrix_mul",
     "cases/prime_sieve",
