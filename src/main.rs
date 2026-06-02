@@ -36,6 +36,7 @@ fn build(metadata: &Metadata, package: &Package) -> Result<(), Box<dyn Error>> {
     let out_file = format!("{path_prefix}/{name}.opt.wasm");
     OptimizationOptions::new_opt_level_3()
         .enable_feature(Feature::BulkMemory)
+        .enable_feature(Feature::TruncSat)
         .run(&in_file, &out_file)
         .unwrap();
     print!("done\n    finalizing .. ");
