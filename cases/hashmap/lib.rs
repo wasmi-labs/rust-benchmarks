@@ -7,12 +7,17 @@ use hashbrown::HashMap;
 
 pub struct Data {
     map: HashMap<u64, u64, RandomState>,
+    len_iterations: usize,
     seed: u64,
 }
 
 impl Data {
-    pub fn len(&self) -> usize {
-        self.map.len()
+    pub fn seed(&self) -> u64 {
+        self.seed
+    }
+
+    pub fn len_iterations(&self) -> usize {
+        self.len_iterations
     }
 }
 
@@ -28,8 +33,9 @@ fn lcg(state: &mut u64) -> u64 {
 #[unsafe(no_mangle)]
 pub extern "C" fn setup(size: usize) -> Box<Data> {
     let seed = size as u64;
-    let mut map = HashMap::with_capacity_and_hasher(size * 2, RandomState::default());
     let mut state = seed;
+    let mut map = HashMap::with_capacity_and_hasher(size * 2, RandomState::default());
+    let len_iterations = size.max(1);
     // ensure non-trivial load factor: insert more than size * 0.75
     let len = size.max(1);
     for _ in 0..len {
@@ -37,14 +43,13 @@ pub extern "C" fn setup(size: usize) -> Box<Data> {
         let v = lcg(&mut state);
         map.insert(k, v);
     }
-    Box::new(Data { map, seed })
+    Box::new(Data { map, seed, len_iterations })
 }
 
 #[unsafe(no_mangle)]
 pub extern "C" fn run(data: &mut Data) {
-    let mut state = data.seed;
-    let iterations = data.len().max(1);
-    for _ in 0..iterations {
+    let mut state = data.seed();
+    for _ in 0..data.len_iterations() {
         let op = lcg(&mut state) % 4;
         let key = lcg(&mut state);
         match op {
