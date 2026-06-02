@@ -31,7 +31,6 @@ pub extern "C" fn setup(size: usize) -> Box<Data> {
     for _ in 0..n {
         let k = lcg(&mut state);
         let v = lcg(&mut state);
-
         map.insert(k, v);
         keys.push(k);
     }
@@ -57,7 +56,6 @@ pub extern "C" fn run(data: &mut Data) {
         } else {
             // 50% MISS: guaranteed disjoint keyspace
             let miss_key = lcg(&mut state) ^ 0x9e3779b97f4a7c15 ^ 0xdead_beef_dead_beef;
-
             let _ = data.map.get(&miss_key);
         }
     }
