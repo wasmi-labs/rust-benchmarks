@@ -9,6 +9,7 @@ edition.workspace = true
 
 [workspace]
 members = [
+    "cases/matrix_mul",
     "cases/tiny_keccak",
     "cases/reverse_complement",
     "cases/regex_redux",
