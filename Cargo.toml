@@ -14,6 +14,7 @@ members = [
     "cases/tiny_keccak",
     "cases/reverse_complement",
     "cases/regex_redux",
+    "cases/sort",
 ]
 resolver = "2"
 
