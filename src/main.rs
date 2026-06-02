@@ -2,7 +2,7 @@ use cargo_metadata::{Error as MetaError, Metadata, Package};
 use std::{
     error::Error,
     fs,
-    io::{stdout, Write},
+    io::{Write, stdout},
     process::Command,
 };
 use wasm_opt::{Feature, OptimizationOptions};
