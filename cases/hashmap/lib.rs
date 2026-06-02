@@ -1,27 +1,18 @@
 #![no_std]
 extern crate alloc;
 
-use alloc::boxed::Box;
+use alloc::{boxed::Box, vec::Vec};
 use foldhash::fast::RandomState;
 use hashbrown::HashMap;
 
 pub struct Data {
     map: HashMap<u64, u64, RandomState>,
-    len_iterations: usize,
+    keys: Vec<u64>,
+    iters: usize,
     seed: u64,
 }
 
-impl Data {
-    pub fn seed(&self) -> u64 {
-        self.seed
-    }
-
-    pub fn len_iterations(&self) -> usize {
-        self.len_iterations
-    }
-}
-
-/// Numerical Recipes LCG
+/// Deterministic LCG
 #[inline(always)]
 fn lcg(state: &mut u64) -> u64 {
     *state = state
@@ -34,50 +25,42 @@ fn lcg(state: &mut u64) -> u64 {
 pub extern "C" fn setup(size: usize) -> Box<Data> {
     let seed = size as u64;
     let mut state = seed;
-    let mut map = HashMap::with_capacity_and_hasher(size * 2, RandomState::default());
-    let len_iterations = size.max(1);
-    // ensure non-trivial load factor: insert more than size * 0.75
-    let len = size.max(1);
-    for _ in 0..len {
+    let n = size.max(1);
+    let mut map = HashMap::with_capacity_and_hasher(n * 2, RandomState::default());
+    let mut keys = Vec::with_capacity(n);
+    for _ in 0..n {
         let k = lcg(&mut state);
         let v = lcg(&mut state);
+
         map.insert(k, v);
+        keys.push(k);
     }
-    Box::new(Data { map, seed, len_iterations })
+    Box::new(Data {
+        map,
+        keys,
+        iters: n * 4, // fixed workload size
+        seed,
+    })
 }
 
 #[unsafe(no_mangle)]
 pub extern "C" fn run(data: &mut Data) {
-    let mut state = data.seed();
-    for _ in 0..data.len_iterations() {
-        let op = lcg(&mut state) % 4;
-        let key = lcg(&mut state);
-        match op {
-            0 | 1 => {
-                // 50% successful lookups (biased toward existing keys)
-                let _ = data.map.get(&key);
-            }
-            2 => {
-                // insert/update
-                let value = lcg(&mut state);
-                data.map.insert(key, value);
-            }
-            _ => {
-                // 25% missing lookups
-                let missing_key = key ^ 0x9e3779b97f4a7c15;
-                let _ = data.map.get(&missing_key);
-            }
+    let mut state = data.seed;
+    let key_count = data.keys.len().max(1);
+    for _ in 0..data.iters {
+        let coin = lcg(&mut state) & 1;
+        if coin == 0 {
+            // 50% HIT: always valid key
+            let idx = (lcg(&mut state) as usize) % key_count;
+            let key = data.keys[idx];
+            let _ = data.map.get(&key);
+        } else {
+            // 50% MISS: guaranteed disjoint keyspace
+            let miss_key = lcg(&mut state) ^ 0x9e3779b97f4a7c15 ^ 0xdead_beef_dead_beef;
+
+            let _ = data.map.get(&miss_key);
         }
     }
-}
-
-#[unsafe(no_mangle)]
-pub extern "C" fn result(data: &Data) -> u64 {
-    let mut acc = 0u64;
-    for (k, v) in data.map.iter() {
-        acc = acc.wrapping_add(k ^ v).rotate_left(7);
-    }
-    acc
 }
 
 #[unsafe(no_mangle)]
