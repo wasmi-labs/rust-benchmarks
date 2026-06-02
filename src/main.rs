@@ -5,7 +5,7 @@ use std::{
     io::{stdout, Write},
     process::Command,
 };
-use wasm_opt::OptimizationOptions;
+use wasm_opt::{Feature, OptimizationOptions};
 
 fn build(metadata: &Metadata, package: &Package) -> Result<(), Box<dyn Error>> {
     let name = &package.name;
@@ -35,6 +35,7 @@ fn build(metadata: &Metadata, package: &Package) -> Result<(), Box<dyn Error>> {
     let in_file = format!("{path_prefix}/{name}.wasm");
     let out_file = format!("{path_prefix}/{name}.opt.wasm");
     OptimizationOptions::new_opt_level_3()
+        .enable_feature(Feature::BulkMemory)
         .run(&in_file, &out_file)
         .unwrap();
     print!("done\n    finalizing .. ");
