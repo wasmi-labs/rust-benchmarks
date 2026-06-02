@@ -8,7 +8,7 @@ pub struct TinyKeccakData {
     result: [u8; 32],
 }
 
-#[no_mangle]
+#[unsafe(no_mangle)]
 pub extern "C" fn setup() -> Box<TinyKeccakData> {
     Box::new(TinyKeccakData {
         input: [254_u8; 4096],
@@ -16,10 +16,10 @@ pub extern "C" fn setup() -> Box<TinyKeccakData> {
     })
 }
 
-#[no_mangle]
+#[unsafe(no_mangle)]
 pub extern "C" fn teardown(_: Box<TinyKeccakData>) {}
 
-#[no_mangle]
+#[unsafe(no_mangle)]
 pub extern "C" fn run(data: &mut TinyKeccakData) {
     let mut keccak = Keccak::v256();
     keccak.update(&data.input[..]);

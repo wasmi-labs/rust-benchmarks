@@ -12,7 +12,7 @@ pub struct RegexReduxData {
     output: Option<usize>,
 }
 
-#[no_mangle]
+#[unsafe(no_mangle)]
 pub extern "C" fn setup(size: usize) -> Box<RegexReduxData> {
     Box::new(RegexReduxData {
         regex: Regex::new("agggtaa[cgt]|[acg]ttaccct").unwrap(),
@@ -21,15 +21,15 @@ pub extern "C" fn setup(size: usize) -> Box<RegexReduxData> {
     })
 }
 
-#[no_mangle]
+#[unsafe(no_mangle)]
 pub extern "C" fn teardown(_: Box<RegexReduxData>) {}
 
-#[no_mangle]
+#[unsafe(no_mangle)]
 pub extern "C" fn input_ptr(data: &mut RegexReduxData) -> *mut u8 {
     data.input.as_mut_ptr()
 }
 
-#[no_mangle]
+#[unsafe(no_mangle)]
 pub extern "C" fn output(data: &mut RegexReduxData) -> u32 {
     match data.output {
         Some(output) => output.try_into().unwrap(),
@@ -37,7 +37,7 @@ pub extern "C" fn output(data: &mut RegexReduxData) -> u32 {
     }
 }
 
-#[no_mangle]
+#[unsafe(no_mangle)]
 pub extern "C" fn run(data: &mut RegexReduxData) {
     let result: usize = data.regex.find_iter(&data.input[..]).count();
     data.output = Some(result);
