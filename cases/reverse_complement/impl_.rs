@@ -50,7 +50,7 @@ trait SplitOff {
     fn split_off_left(&mut self, n: usize) -> Self;
     fn split_off_right(&mut self, n: usize) -> Self;
 }
-impl<'a, T> SplitOff for &'a mut [T] {
+impl<T> SplitOff for &'_ mut [T] {
     /// Split the left `n` items from self and return them as a separate slice.
     fn split_off_left(&mut self, n: usize) -> Self {
         let n = cmp::min(self.len(), n);
@@ -59,6 +59,7 @@ impl<'a, T> SplitOff for &'a mut [T] {
         *self = data;
         left
     }
+
     /// Split the right `n` items from self and return them as a separate slice.
     fn split_off_right(&mut self, n: usize) -> Self {
         let len = self.len();
