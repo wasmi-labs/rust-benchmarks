@@ -43,7 +43,7 @@ fn build(metadata: &Metadata, package: &Package) -> Result<(), Box<dyn Error>> {
     let root_dir = &metadata.workspace_root;
     fs::copy(
         &out_file,
-        &format!("{root_dir}/cases/{pretty_name}/out.wasm"),
+        format!("{root_dir}/cases/{pretty_name}/out.wasm"),
     )?;
     println!("done");
     Ok(())
