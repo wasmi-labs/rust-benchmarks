@@ -476,6 +476,10 @@ name = "wasmi_benches_matrix_mul"
 version = "0.0.0"
 
 [[package]]
+name = "wasmi_benches_prime_sieve"
+version = "0.0.0"
+
+[[package]]
 name = "wasmi_benches_regex_redux"
 version = "0.0.0"
 dependencies = [
