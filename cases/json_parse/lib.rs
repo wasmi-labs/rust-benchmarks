@@ -65,8 +65,7 @@ pub extern "C" fn input_ptr(data: &mut Data) -> *mut u8 {
 
 #[unsafe(no_mangle)]
 pub extern "C" fn run(data: &mut Data) {
-    data.value =
-        serde_json::from_slice(&data.input).expect("input must be a valid JSON document");
+    data.value = serde_json::from_slice(&data.input).expect("input must be a valid JSON document");
 }
 
 /// Returns the total number of nodes in the most recently parsed document.
