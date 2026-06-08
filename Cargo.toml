@@ -17,6 +17,8 @@ members = [
     "cases/reverse_complement",
     "cases/regex_redux",
     "cases/sort",
+    "cases/word_count",
+    "cases/compression",
 ]
 resolver = "2"
 

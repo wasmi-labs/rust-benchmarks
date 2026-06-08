@@ -1,0 +1,15 @@
+[package]
+name = "wasmi_benches_word_count"
+version.workspace = true
+publish.workspace = true
+authors.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+edition.workspace = true
+
+[lib]
+path = "lib.rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+hashbrown = "0.15.2"
