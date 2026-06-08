@@ -20,6 +20,8 @@ members = [
     "cases/word_count",
     "cases/compression",
     "cases/json_parse",
+    "cases/spectralnorm",
+    "cases/mandelbrot",
 ]
 resolver = "2"
 
