@@ -17,8 +17,10 @@ use miniz_oxide::deflate::core::{
 };
 
 pub struct Data {
-    /// The uncompressed input. Filled in [`setup`] but may be overwritten by the
-    /// host through [`input`] before running the benchmark.
+    /// The uncompressed input.
+    ///
+    /// Initialized in [`setup`] but may be overwritten by the
+    /// host through [`input_ptr`] before running the benchmark.
     input: Vec<u8>,
     /// The compressed output. Pre-sized to the deflate worst case so [`run`]
     /// never has to grow it.
