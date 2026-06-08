@@ -899,6 +899,10 @@ name = "wasmi_benches_sort"
 version = "0.0.0"
 
 [[package]]
+name = "wasmi_benches_spectralnorm"
+version = "0.0.0"
+
+[[package]]
 name = "wasmi_benches_tiny_keccak"
 version = "0.0.0"
 dependencies = [
