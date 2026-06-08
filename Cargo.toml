@@ -19,6 +19,7 @@ members = [
     "cases/sort",
     "cases/word_count",
     "cases/compression",
+    "cases/json_parse",
 ]
 resolver = "2"
 
