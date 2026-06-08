@@ -868,6 +868,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "wasmi_benches_mandelbrot"
+version = "0.0.0"
+
+[[package]]
 name = "wasmi_benches_matrix_mul"
 version = "0.0.0"
 
