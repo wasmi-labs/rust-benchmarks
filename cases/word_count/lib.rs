@@ -88,7 +88,10 @@ pub extern "C" fn run(data: &mut Data) {
     // Reuse the existing allocation instead of building a fresh table.
     table.clear();
     let mut specials = 0;
-    for chunk in bytes.split(u8::is_ascii_whitespace).filter(|c| !c.is_empty()) {
+    for chunk in bytes
+        .split(u8::is_ascii_whitespace)
+        .filter(|c| !c.is_empty())
+    {
         if !chunk.iter().all(u8::is_ascii_alphabetic) {
             // A chunk that is not purely alphabetic is a special character.
             specials += 1;
@@ -103,7 +106,11 @@ pub extern "C" fn run(data: &mut Data) {
         } else {
             table.insert_unique(
                 hash,
-                WordEntry { start, len, count: 1 },
+                WordEntry {
+                    start,
+                    len,
+                    count: 1,
+                },
                 |entry| hash_builder.hash_one(&bytes[entry.start..entry.start + entry.len]),
             );
         }

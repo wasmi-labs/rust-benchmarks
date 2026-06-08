@@ -9,7 +9,11 @@ extern crate alloc;
 
 use alloc::{boxed::Box, vec, vec::Vec};
 use miniz_oxide::deflate::core::{
-    CompressorOxide, TDEFLFlush, TDEFLStatus, compress, create_comp_flags_from_zip_params,
+    CompressorOxide,
+    TDEFLFlush,
+    TDEFLStatus,
+    compress,
+    create_comp_flags_from_zip_params,
 };
 
 pub struct Data {
