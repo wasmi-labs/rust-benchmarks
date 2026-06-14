@@ -1,0 +1,2 @@
+cases/reverse_complement/input.txt  text eol=lf
+cases/reverse_complement/output.txt text eol=lf
