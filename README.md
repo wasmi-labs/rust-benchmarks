@@ -21,9 +21,18 @@ This builds the benchmark `.wasm` files for all the Rust based benchmarks
 such as `tiny_keccak`, `reverse_complement` and `regex_redux` with proper
 optimizations and stores the results in their respective directories.
 
+## Lower to Wasm MVP
+
+The `scripts/lower-all-to-mvp.sh` can be used to lower the `out.wasm` files
+or all `cases` to Wasm MVP (if possible) to make usage simpler for some Wasm runtimes.
+
+```
+./scripts/lower-all-to-mvp.sh
+```
+
 ## Usage
 
-Use this script whenever a benchmark has changed or when a new Rust, LLVM or `wasm-opt`
+Use these scripts whenever a benchmark has changed or when a new Rust, LLVM or `wasm-opt`
 version has been released.
 
 ## License
