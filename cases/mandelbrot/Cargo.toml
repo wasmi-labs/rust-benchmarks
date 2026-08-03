@@ -1,5 +1,5 @@
 [package]
-name = "wasmi_benches_mandelbrot"
+name = "wasmi-benches-mandelbrot"
 version.workspace = true
 publish.workspace = true
 authors.workspace = true

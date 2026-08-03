@@ -1,5 +1,5 @@
 [package]
-name = "wasmi_benches_sort"
+name = "wasmi-benches-sort"
 version.workspace = true
 publish.workspace = true
 authors.workspace = true

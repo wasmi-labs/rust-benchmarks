@@ -1,5 +1,5 @@
 [package]
-name = "wasmi_benches_nbody"
+name = "wasmi-benches-nbody"
 version.workspace = true
 publish.workspace = true
 authors.workspace = true

@@ -1,5 +1,5 @@
 [package]
-name = "wasmi_benches_argon2"
+name = "wasmi-benches-argon2"
 version.workspace = true
 publish.workspace = true
 authors.workspace = true

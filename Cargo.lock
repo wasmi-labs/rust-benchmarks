@@ -847,74 +847,74 @@ dependencies = [
 ]
 
 [[package]]
-name = "wasmi_benches_argon2"
+name = "wasmi-benches-argon2"
 version = "0.0.0"
 dependencies = [
  "argon2",
 ]
 
 [[package]]
-name = "wasmi_benches_compression"
+name = "wasmi-benches-compression"
 version = "0.0.0"
 dependencies = [
  "miniz_oxide",
 ]
 
 [[package]]
-name = "wasmi_benches_json_parse"
+name = "wasmi-benches-json-parse"
 version = "0.0.0"
 dependencies = [
  "serde_json",
 ]
 
 [[package]]
-name = "wasmi_benches_mandelbrot"
+name = "wasmi-benches-mandelbrot"
 version = "0.0.0"
 
 [[package]]
-name = "wasmi_benches_matrix_mul"
+name = "wasmi-benches-matrix-mul"
 version = "0.0.0"
 
 [[package]]
-name = "wasmi_benches_nbody"
+name = "wasmi-benches-nbody"
 version = "0.0.0"
 
 [[package]]
-name = "wasmi_benches_prime_sieve"
+name = "wasmi-benches-prime-sieve"
 version = "0.0.0"
 
 [[package]]
-name = "wasmi_benches_regex_redux"
+name = "wasmi-benches-regex-redux"
 version = "0.0.0"
 dependencies = [
  "regex",
 ]
 
 [[package]]
-name = "wasmi_benches_reverse_complement"
+name = "wasmi-benches-reverse-complement"
 version = "0.0.0"
 
 [[package]]
-name = "wasmi_benches_sort"
+name = "wasmi-benches-sort"
 version = "0.0.0"
 
 [[package]]
-name = "wasmi_benches_sort_dyn"
+name = "wasmi-benches-sort-dyn"
 version = "0.0.0"
 
 [[package]]
-name = "wasmi_benches_spectralnorm"
+name = "wasmi-benches-spectralnorm"
 version = "0.0.0"
 
 [[package]]
-name = "wasmi_benches_tiny_keccak"
+name = "wasmi-benches-tiny-keccak"
 version = "0.0.0"
 dependencies = [
  "tiny-keccak",
 ]
 
 [[package]]
-name = "wasmi_benches_word_count"
+name = "wasmi-benches-word-count"
 version = "0.0.0"
 dependencies = [
  "hashbrown 0.15.5",

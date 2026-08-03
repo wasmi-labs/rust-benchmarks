@@ -1,5 +1,5 @@
 [package]
-name = "wasmi_benches_spectralnorm"
+name = "wasmi-benches-spectralnorm"
 version.workspace = true
 publish.workspace = true
 authors.workspace = true
