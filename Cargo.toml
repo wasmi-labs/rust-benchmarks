@@ -17,6 +17,7 @@ members = [
     "cases/reverse_complement",
     "cases/regex_redux",
     "cases/sort",
+    "cases/sort_dyn",
     "cases/word_count",
     "cases/compression",
     "cases/json_parse",
